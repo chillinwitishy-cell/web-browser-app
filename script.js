@@ -1,16 +1,20 @@
-let currentUrl = '';
+let currentUrl = 'https://example.com';
 let history = [];
 let historyIndex = -1;
+
+// Initialize on page load
+window.onload = function() {
+    document.getElementById('address-bar').value = currentUrl;
+};
 
 // Function to handle address bar key press
 function handleAddressBarKeyPress(event) {
     if (event.key === 'Enter') {
         let url = document.getElementById('address-bar').value;
-        if (url.startsWith('http://') || url.startsWith('https://')) {
-            navigateToUrl(url);
-        } else {
-            navigateToUrl('http://' + url);
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+            url = 'https://' + url;
         }
+        navigateToUrl(url);
     }
 }
 
@@ -55,13 +59,14 @@ function refreshPage() {
 
 // Function to go home
 function goHome() {
-    navigateToUrl('https://www.google.com');
+    navigateToUrl('https://example.com');
 }
 
-// Error handling for invalid URLs
+// Error handling for iframe loading
+document.getElementById('main-frame').onerror = function() {
+    console.log('Failed to load:', currentUrl);
+};
+
 document.getElementById('main-frame').onload = function() {
-    if (document.getElementById('main-frame').contentDocument.documentElement.innerHTML.includes('404')) {
-        alert('Invalid URL. Please enter a valid URL.');
-        document.getElementById('main-frame').src = 'https://www.google.com';
-    }
+    console.log('Successfully loaded:', currentUrl);
 };
