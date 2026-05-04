@@ -13,9 +13,32 @@
         <button id="refresh-button" onclick="refreshPage()">&#8634;</button>
         <button id="home-button" onclick="goHome()">Home</button>
         <input id="address-bar" type="text" placeholder="Enter URL" onkeypress="handleAddressBarKeyPress(event)">
+        <button id="go-button" onclick="navigateFromAddressBar()">Go</button>
     </div>
     <div class="browser-body">
-        <iframe id="main-frame" src="https://example.com" frameborder="0" width="100%" height="100%"></iframe>
+        <div class="iframe-container">
+            <iframe id="main-frame" src="about:blank" frameborder="0" width="100%" height="100%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"></iframe>
+        </div>
+        <div class="info-panel">
+            <h3>🌐 Enhanced Web Browser</h3>
+            <p>Navigate to any website using the address bar above.</p>
+            <div class="features">
+                <h4>✨ Features:</h4>
+                <ul>
+                    <li>✅ Smart URL detection</li>
+                    <li>✅ Popup window for blocked sites</li>
+                    <li>✅ History navigation</li>
+                    <li>✅ Mobile responsive</li>
+                </ul>
+            </div>
+            <div class="try-sites">
+                <h4>🚀 Try These Sites:</h4>
+                <button onclick="navigateToUrl('https://example.com')">Example.com</button>
+                <button onclick="navigateToUrl('https://httpbin.org/html')">Test Site</button>
+                <button onclick="navigateToUrl('https://www.w3.org')">W3.org</button>
+                <button onclick="navigateToUrl('https://developer.mozilla.org')">MDN Docs</button>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
